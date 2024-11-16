@@ -7,13 +7,22 @@ const UserTable = () => {
         { id: 2, name: 'Herak Shaabe', email: 'herakshaabe@gmail.com', contact: '+914554667755', lastActive: '-', appVersion: '-', createdDate: 'November 13, 2024 3:28 AM', status: 'Active' },
         { id: 3, name: 'Hans Odiboh', email: 'hansodiboh@gmail.com', contact: '+91883894995', lastActive: '-', appVersion: '-', createdDate: 'November 12, 2024 3:07 PM', status: 'Active' },
         { id: 4, name: 'Gannon Travis', email: 'travis@rider.com', contact: '+919879879877', lastActive: 'November 13, 2024 7:24 AM', appVersion: '-', createdDate: 'November 12, 2024 5:23 AM', status: 'Active' },
-        { id: 5, name: 'Rider 2', email: 'r@r.com', contact: '34846401640', lastActive: 'November 11, 2024 7:18 PM', appVersion: '-', createdDate: 'November 11, 2024 7:18 PM', status: 'Active' },
+        { id: 6, name: 'Rider 2', email: 'r@r.com', contact: '34846401640', lastActive: 'November 11, 2024 7:18 PM', appVersion: '-', createdDate: 'November 11, 2024 7:18 PM', status: 'Active' },
+        { id: 7, name: 'Rider 2', email: 'r@r.com', contact: '34846401640', lastActive: 'November 11, 2024 7:18 PM', appVersion: '-', createdDate: 'November 11, 2024 7:18 PM', status: 'Active' },
+        { id: 8, name: 'Rider 2', email: 'r@r.com', contact: '34846401640', lastActive: 'November 11, 2024 7:18 PM', appVersion: '-', createdDate: 'November 11, 2024 7:18 PM', status: 'Active' },
+        { id: 9, name: 'Rider 2', email: 'r@r.com', contact: '34846401640', lastActive: 'November 11, 2024 7:18 PM', appVersion: '-', createdDate: 'November 11, 2024 7:18 PM', status: 'Active' },
+        { id: 9, name: 'Rider 2', email: 'r@r.com', contact: '34846401640', lastActive: 'November 11, 2024 7:18 PM', appVersion: '-', createdDate: 'November 11, 2024 7:18 PM', status: 'Active' },
+        { id: 9, name: 'Rider 2', email: 'r@r.com', contact: '34846401640', lastActive: 'November 11, 2024 7:18 PM', appVersion: '-', createdDate: 'November 11, 2024 7:18 PM', status: 'Active' },
+        { id: 9, name: 'Rider 2', email: 'r@r.com', contact: '34846401640', lastActive: 'November 11, 2024 7:18 PM', appVersion: '-', createdDate: 'November 11, 2024 7:18 PM', status: 'Active' },
+        { id: 9, name: 'Rider 2', email: 'r@r.com', contact: '34846401640', lastActive: 'November 11, 2024 7:18 PM', appVersion: '-', createdDate: 'November 11, 2024 7:18 PM', status: 'Active' },
+        { id: 9, name: 'Rider 2', email: 'r@r.com', contact: '34846401640', lastActive: 'November 11, 2024 7:18 PM', appVersion: '-', createdDate: 'November 11, 2024 7:18 PM', status: 'Active' },
+        { id: 9, name: 'Rider 2', email: 'r@r.com', contact: '34846401640', lastActive: 'November 11, 2024 7:18 PM', appVersion: '-', createdDate: 'November 11, 2024 7:18 PM', status: 'Active' },
         // Add more sample users as needed for pagination testing
     ];
 
     const [users, setUsers] = useState(data);
     const [currentPage, setCurrentPage] = useState(1);
-    const [entriesPerPage, setEntriesPerPage] = useState(5); // Default entries per page
+    const [entriesPerPage, setEntriesPerPage] = useState(10); 
     const [displayedUsers, setDisplayedUsers] = useState([]);
 
     useEffect(() => {
