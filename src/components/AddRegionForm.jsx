@@ -108,7 +108,7 @@ const AddRegionForm = () => {
           <div className="w-2/3 relative">
             <label className="font-medium">Select Region on Map</label>
             <LoadScript
-              googleMapsApiKey="AIzaSyBjGyyXWfWYY0gG4OlJTFQ82Gr6SU7siw8"
+              googleMapsApiKey=""
               libraries={libraries}
             >
               <MapComponent onPolygonComplete ={handlePolygonComplete} />

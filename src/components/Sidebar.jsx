@@ -13,6 +13,7 @@ const Sidebar = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [isCouponOpen, setIsCouponOpen] = useState(false);
   const [isRegionOpen, setIsRegionOpen] = useState(false);
+  const [isServiceOpen, setIsServiceOpen] = useState(false);
 
 
   const toggleSidebar = () => {
@@ -23,6 +24,9 @@ const Sidebar = () => {
   };
   const toggleRegionDropdown = () => {
     setIsRegionOpen(!isRegionOpen);
+  };
+  const toggleServiceDropdown = () => {
+    setIsServiceOpen(!isServiceOpen);
   };
 
   return (
@@ -84,10 +88,40 @@ const Sidebar = () => {
           </ul>
         </li>
         <li>
-          <Link to="/service" className="flex items-center space-x-3 p-2 hover:bg-blue-100 hover:text-blue-600 rounded">
-            <FaCar />
-            {!isCollapsed && <span>Service</span>}
-          </Link>
+          <div
+            onClick={toggleServiceDropdown}
+            className="flex items-center justify-between space-x-3 p-2 hover:bg-blue-100 hover:text-blue-600 rounded cursor-pointer"
+          >
+            <div className="flex items-center space-x-3">
+              <FaGift />
+              {!isCollapsed && <span>Service</span>}
+            </div>
+            {!isCollapsed && (isServiceOpen ? <FaAngleUp /> : <FaAngleDown />)}
+          </div>
+
+          <ul
+            className={`space-y-4 overflow-hidden border-blue-100 border rounded transition-all duration-500 ease-in-out ${isServiceOpen ? 'max-h-40 opacity-100' : 'max-h-0 opacity-0'
+              }`}
+          >
+            <li>
+              <Link
+                to="/service"
+                className="flex items-center space-x-3 p-2 hover:bg-blue-50 hover:text-blue-600 rounded"
+              >
+                <FaList />
+                <span>Service List</span>
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/service/create"
+                className="flex items-center space-x-3 p-2 hover:bg-blue-50 hover:text-blue-600 rounded"
+              >
+                <FaPlus />
+                <span>Add Service</span>
+              </Link>
+            </li>
+          </ul>
         </li>
         <li>
           <Link to="/driver" className="flex items-center space-x-3 p-2 hover:bg-blue-100 hover:text-blue-600 rounded">
