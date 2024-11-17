@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { FaRegEdit } from "react-icons/fa";
+import { MdDelete } from "react-icons/md";
 
-const UserTable = () => {
+const CustomerData = () => {
     // Sample data
     const data = [
         { id: 1, name: 'Jack Sparrow', email: 'jack@gmail.com', contact: '1254567890', lastActive: 'November 13, 2024 7:26 AM', appVersion: '-', createdDate: 'November 13, 2024 7:25 AM', status: 'Active' },
@@ -11,18 +13,18 @@ const UserTable = () => {
         { id: 7, name: 'Rider 2', email: 'r@r.com', contact: '34846401640', lastActive: 'November 11, 2024 7:18 PM', appVersion: '-', createdDate: 'November 11, 2024 7:18 PM', status: 'Active' },
         { id: 8, name: 'Rider 2', email: 'r@r.com', contact: '34846401640', lastActive: 'November 11, 2024 7:18 PM', appVersion: '-', createdDate: 'November 11, 2024 7:18 PM', status: 'Active' },
         { id: 9, name: 'Rider 2', email: 'r@r.com', contact: '34846401640', lastActive: 'November 11, 2024 7:18 PM', appVersion: '-', createdDate: 'November 11, 2024 7:18 PM', status: 'Active' },
-        { id: 9, name: 'Rider 2', email: 'r@r.com', contact: '34846401640', lastActive: 'November 11, 2024 7:18 PM', appVersion: '-', createdDate: 'November 11, 2024 7:18 PM', status: 'Active' },
-        { id: 9, name: 'Rider 2', email: 'r@r.com', contact: '34846401640', lastActive: 'November 11, 2024 7:18 PM', appVersion: '-', createdDate: 'November 11, 2024 7:18 PM', status: 'Active' },
-        { id: 9, name: 'Rider 2', email: 'r@r.com', contact: '34846401640', lastActive: 'November 11, 2024 7:18 PM', appVersion: '-', createdDate: 'November 11, 2024 7:18 PM', status: 'Active' },
-        { id: 9, name: 'Rider 2', email: 'r@r.com', contact: '34846401640', lastActive: 'November 11, 2024 7:18 PM', appVersion: '-', createdDate: 'November 11, 2024 7:18 PM', status: 'Active' },
-        { id: 9, name: 'Rider 2', email: 'r@r.com', contact: '34846401640', lastActive: 'November 11, 2024 7:18 PM', appVersion: '-', createdDate: 'November 11, 2024 7:18 PM', status: 'Active' },
-        { id: 9, name: 'Rider 2', email: 'r@r.com', contact: '34846401640', lastActive: 'November 11, 2024 7:18 PM', appVersion: '-', createdDate: 'November 11, 2024 7:18 PM', status: 'Active' },
-        // Add more sample users as needed for pagination testing
+        { id: 10, name: 'Rider 2', email: 'r@r.com', contact: '34846401640', lastActive: 'November 11, 2024 7:18 PM', appVersion: '-', createdDate: 'November 11, 2024 7:18 PM', status: 'Active' },
+        { id: 11, name: 'Rider 2', email: 'r@r.com', contact: '34846401640', lastActive: 'November 11, 2024 7:18 PM', appVersion: '-', createdDate: 'November 11, 2024 7:18 PM', status: 'Active' },
+        { id: 12, name: 'Rider 2', email: 'r@r.com', contact: '34846401640', lastActive: 'November 11, 2024 7:18 PM', appVersion: '-', createdDate: 'November 11, 2024 7:18 PM', status: 'Active' },
+        { id: 13, name: 'Rider 2', email: 'r@r.com', contact: '34846401640', lastActive: 'November 11, 2024 7:18 PM', appVersion: '-', createdDate: 'November 11, 2024 7:18 PM', status: 'Active' },
+        { id: 14, name: 'Rider 2', email: 'r@r.com', contact: '34846401640', lastActive: 'November 11, 2024 7:18 PM', appVersion: '-', createdDate: 'November 11, 2024 7:18 PM', status: 'Active' },
+        { id: 15, name: 'Rider 2', email: 'r@r.com', contact: '34846401640', lastActive: 'November 11, 2024 7:18 PM', appVersion: '-', createdDate: 'November 11, 2024 7:18 PM', status: 'Active' },
+
     ];
 
     const [users, setUsers] = useState(data);
     const [currentPage, setCurrentPage] = useState(1);
-    const [entriesPerPage, setEntriesPerPage] = useState(10); 
+    const [entriesPerPage, setEntriesPerPage] = useState(10);
     const [displayedUsers, setDisplayedUsers] = useState([]);
 
     useEffect(() => {
@@ -103,43 +105,48 @@ const UserTable = () => {
                                     <span className="bg-blue-500 text-white px-2 py-1 rounded">{user.status}</span>
                                 </td>
                                 <td className="p-2 border-b-2 border-blue-200">
-                                    <button className="text-blue-600 mx-1">✏️</button>
+                                    <button className="text-blue-600 mx-1 text-xl"><FaRegEdit/></button>
                                     <button className="text-blue-600 mx-1">👁️</button>
-                                    <button className="text-red-600 mx-1">🗑️</button>
+                                    <button className="text-red-600 mx-1 text-xl"><MdDelete/></button>
                                 </td>
                             </tr>
                         ))}
                     </tbody>
                 </table>
+                <div className='flex items-center justify-between p-4'>
+                    <div>
+                        <p>Showing 10 of 15 entries</p>
+                    </div>
 
-                <div className="flex justify-center items-center gap-2 mt-4">
-                    <button
-                        onClick={handlePrevious}
-                        disabled={currentPage === 1}
-                        className={`px-3 py-1 rounded ${currentPage === 1 ? 'bg-gray-300' : 'bg-blue-500 text-white'}`}
-                    >
-                        Previous
-                    </button>
-                    {[...Array(totalPages)].map((_, index) => (
+                    <div className="flex justify-center items-center gap-2 mt-4">
                         <button
-                            key={index + 1}
-                            onClick={() => handlePageChange(index + 1)}
-                            className={`px-3 py-1 rounded ${currentPage === index + 1 ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
+                            onClick={handlePrevious}
+                            disabled={currentPage === 1}
+                            className={`px-3 py-1 rounded ${currentPage === 1 ? 'bg-gray-300' : 'bg-blue-500 text-white'}`}
                         >
-                            {index + 1}
+                            Previous
                         </button>
-                    ))}
-                    <button
-                        onClick={handleNext}
-                        disabled={currentPage === totalPages}
-                        className={`px-3 py-1 rounded ${currentPage === totalPages ? 'bg-gray-300' : 'bg-blue-500 text-white'}`}
-                    >
-                        Next
-                    </button>
+                        {[...Array(totalPages)].map((_, index) => (
+                            <button
+                                key={index + 1}
+                                onClick={() => handlePageChange(index + 1)}
+                                className={`px-3 py-1 rounded ${currentPage === index + 1 ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
+                            >
+                                {index + 1}
+                            </button>
+                        ))}
+                        <button
+                            onClick={handleNext}
+                            disabled={currentPage === totalPages}
+                            className={`px-3 py-1 rounded ${currentPage === totalPages ? 'bg-gray-300' : 'bg-blue-500 text-white'}`}
+                        >
+                            Next
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
     );
 };
 
-export default UserTable;
+export default CustomerData;
