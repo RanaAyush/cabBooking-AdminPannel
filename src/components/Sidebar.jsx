@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FaList, FaPlus, FaAngleDown, FaAngleUp } from 'react-icons/fa';
-import { FaHome, FaUser, FaGlobe, FaCar, FaFileAlt, FaGift, FaCarAlt, FaExclamationTriangle, FaDollarSign, FaUsers } from 'react-icons/fa';
+import { FaList, FaPlus, FaAngleRight, FaAngleUp } from 'react-icons/fa';
+import { FaHome, FaUser, FaGlobe, FaCar, FaFileAlt, FaGift, FaCarAlt, FaExclamationTriangle, FaDollarSign } from 'react-icons/fa';
 import { HiMenu, HiDocumentReport } from "react-icons/hi";
-import { AiFillNotification } from "react-icons/ai";
 import { IoSettingsSharp } from 'react-icons/io5';
-import { MdOutlineAddBox } from 'react-icons/md';
+import { MdOutlineSecurity } from 'react-icons/md';
 import { RiUserSettingsFill } from "react-icons/ri";
+import { AiFillNotification } from "react-icons/ai";
+import { SiGoogledocs } from "react-icons/si";
 import car from '../assets/car.png'
 
 const Sidebar = () => {
@@ -14,6 +15,12 @@ const Sidebar = () => {
   const [isCouponOpen, setIsCouponOpen] = useState(false);
   const [isRegionOpen, setIsRegionOpen] = useState(false);
   const [isServiceOpen, setIsServiceOpen] = useState(false);
+  const [isDriverOpen, setIsDriverOpen] = useState(false);
+  const [isPushNotification, setIsPushNotification] = useState(false);
+  const [isComplaintOpen, setIsComplaintOpen] = useState(false);
+  const [isRideReqOpen, setIsRideReqOpen] = useState(false);
+  const [isReport, setIsReport] = useState(false);
+  const [isAccSetting, setIsAccSetting] = useState(false);
 
 
   const toggleSidebar = () => {
@@ -28,9 +35,27 @@ const Sidebar = () => {
   const toggleServiceDropdown = () => {
     setIsServiceOpen(!isServiceOpen);
   };
+  const toggleDriverDropdown = () => {
+    setIsDriverOpen(!isDriverOpen);
+  };
+  const togglePushNotificationDropdown = () => {
+    setIsPushNotification(!isPushNotification);
+  };
+  const toggleComplaintDropdown = () => {
+    setIsComplaintOpen(!isComplaintOpen);
+  };
+  const toggleRideReqDropdown = () => {
+    setIsRideReqOpen(!isRideReqOpen);
+  };
+  const toggleReportDropdown = () => {
+    setIsReport(!isReport);
+  };
+  const toggleAccSettingDropdown = () => {
+    setIsAccSetting(!isAccSetting);
+  };
 
   return (
-    <div className={`bg-white text-[#535f6b] p-5 transition-width duration-500 ${isCollapsed ? 'w-20' : 'w-60'}`}>
+    <div className={`bg-white text-[#535f6b] p-5 transition-width duration-500 text-sm font-semibold ${isCollapsed ? 'w-20' : 'w-60'}`}>
       <div className='flex items-center justify-between px-2 mb-4'>
         {!isCollapsed && <img src={car} alt="carlogo" className=' w-10 h-10 rounded-full border-2 border-black p-1' />}
         <button onClick={toggleSidebar} className="mb-4 text-gray-500 hover:text-gray-800 pt-2">
@@ -40,7 +65,7 @@ const Sidebar = () => {
 
       <ul className="space-y-4">
         <li>
-          <Link to="/dashboard" className="flex items-center space-x-3 p-2 hover:bg-blue-200 rounded">
+          <Link to="/dashboard" className="flex items-center space-x-3 p-2 hover:bg-blue-200 hover:text-blue-600 rounded">
             <FaHome />
             {!isCollapsed && <span>Dashboard</span>}
           </Link>
@@ -57,14 +82,14 @@ const Sidebar = () => {
             className="flex items-center justify-between space-x-3 p-2 hover:bg-blue-100 hover:text-blue-600 rounded cursor-pointer"
           >
             <div className="flex items-center space-x-3">
-              <FaGift />
+              <FaGlobe />
               {!isCollapsed && <span>Region</span>}
             </div>
-            {!isCollapsed && (isRegionOpen ? <FaAngleUp /> : <FaAngleDown />)}
+            {!isCollapsed && (isRegionOpen ? <FaAngleUp /> : <FaAngleRight />)}
           </div>
 
           <ul
-            className={`space-y-4 overflow-hidden border-blue-100 border rounded transition-all duration-500 ease-in-out ${isRegionOpen ? 'max-h-40 opacity-100' : 'max-h-0 opacity-0'
+            className={`space-y-4 overflow-hidden border-blue-100 border rounded transition-all duration-700 ease-in-out ${isRegionOpen ? 'max-h-40 opacity-100' : 'max-h-0 opacity-0'
               }`}
           >
             <li>
@@ -93,14 +118,14 @@ const Sidebar = () => {
             className="flex items-center justify-between space-x-3 p-2 hover:bg-blue-100 hover:text-blue-600 rounded cursor-pointer"
           >
             <div className="flex items-center space-x-3">
-              <FaGift />
+              <FaFileAlt />
               {!isCollapsed && <span>Service</span>}
             </div>
-            {!isCollapsed && (isServiceOpen ? <FaAngleUp /> : <FaAngleDown />)}
+            {!isCollapsed && (isServiceOpen ? <FaAngleUp /> : <FaAngleRight />)}
           </div>
 
           <ul
-            className={`space-y-4 overflow-hidden border-blue-100 border rounded transition-all duration-500 ease-in-out ${isServiceOpen ? 'max-h-40 opacity-100' : 'max-h-0 opacity-0'
+            className={`space-y-4 overflow-hidden border-blue-100 border rounded transition-all duration-700 ease-in-out ${isServiceOpen ? 'max-h-40 opacity-100' : 'max-h-0 opacity-0'
               }`}
           >
             <li>
@@ -124,10 +149,59 @@ const Sidebar = () => {
           </ul>
         </li>
         <li>
-          <Link to="/driver" className="flex items-center space-x-3 p-2 hover:bg-blue-100 hover:text-blue-600 rounded">
-            <FaFileAlt />
-            {!isCollapsed && <span>Driver</span>}
-          </Link>
+          <div
+            onClick={toggleDriverDropdown}
+            className="flex items-center justify-between space-x-3 p-2 hover:bg-blue-100 hover:text-blue-600 rounded cursor-pointer"
+          >
+            <div className="flex items-center space-x-3">
+              <FaCar />
+              {!isCollapsed && <span>Driver</span>}
+            </div>
+            {!isCollapsed && (isDriverOpen ? <FaAngleUp /> : <FaAngleRight />)}
+          </div>
+
+          <ul
+            className={`space-y-4 overflow-hidden border-blue-100 border rounded transition-all duration-700 ease-in-out ${isDriverOpen ? 'max-h-52 opacity-100' : 'max-h-0 opacity-0'
+              }`}
+          >
+            <li>
+              <Link
+                to="/driver"
+                className="flex items-center space-x-3 p-2 hover:bg-blue-50 hover:text-blue-600 rounded"
+              >
+                <FaList />
+                <span>Driver List</span>
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/driver/pending"
+                className="flex items-center space-x-3 p-2 hover:bg-blue-50 hover:text-blue-600 rounded"
+              >
+                <FaList />
+                <span>Pending Driver</span>
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/driver/create"
+                className="flex items-center space-x-3 p-2 hover:bg-blue-50 hover:text-blue-600 rounded"
+              >
+                <FaPlus />
+                <span>Add Driver</span>
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/driver/docs"
+                className="flex items-center space-x-3 p-2 hover:bg-blue-50 hover:text-blue-600 rounded"
+              >
+                <FaPlus />
+                <span>Manage Driver Documents</span>
+              </Link>
+            </li>
+            
+          </ul>
         </li>
         <li>
           <div
@@ -138,11 +212,11 @@ const Sidebar = () => {
               <FaGift />
               {!isCollapsed && <span>Coupon</span>}
             </div>
-            {!isCollapsed && (isCouponOpen ? <FaAngleUp /> : <FaAngleDown />)}
+            {!isCollapsed && (isCouponOpen ? <FaAngleUp /> : <FaAngleRight />)}
           </div>
 
           <ul
-            className={`space-y-4 overflow-hidden border-blue-100 border rounded transition-all duration-500 ease-in-out ${isCouponOpen ? 'max-h-40 opacity-100' : 'max-h-0 opacity-0'
+            className={`space-y-4 overflow-hidden border-blue-100 border rounded transition-all duration-700 ease-in-out ${isCouponOpen ? 'max-h-40 opacity-100' : 'max-h-0 opacity-0'
               }`}
           >
             <li>
@@ -166,61 +240,244 @@ const Sidebar = () => {
           </ul>
         </li>
         <li>
-          <Link to="/ride-request" className="flex items-center space-x-3 p-2 hover:bg-blue-100 hover:text-blue-600 rounded relative">
-            <FaCarAlt />
-            {!isCollapsed && <span>Ride Request</span>}
-            {!isCollapsed && (
-              <span className="ml-auto bg-blue-500 text-white text-xs px-2 py-0.5 rounded-full">56</span>
-            )}
+          <div
+            onClick={toggleRideReqDropdown}
+            className="flex items-center justify-between space-x-3 p-2 hover:bg-blue-100 hover:text-blue-600 rounded cursor-pointer"
+          >
+            <div className="flex items-center space-x-3">
+              <FaCarAlt />
+              {!isCollapsed && <span>Ride request</span>}
+            </div>
+            {!isCollapsed && (isRideReqOpen ? <FaAngleUp /> : <FaAngleRight />)}
+          </div>
+
+          <ul
+            className={`space-y-4 overflow-hidden border-blue-100 border rounded transition-all duration-700 ease-in-out ${isRideReqOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'
+              }`}
+          >
+            <li>
+              <Link
+                to="/riderequest/all"
+                className="flex items-center space-x-3 p-2 hover:bg-blue-50 hover:text-blue-600 rounded"
+              >
+                <FaList />
+                <span>All List</span>
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/riderequest/new"
+                className="flex items-center space-x-3 p-2 hover:bg-blue-50 hover:text-blue-600 rounded"
+              >
+                <FaList />
+                <span>New Ride List</span>
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/riderequest/completed"
+                className="flex items-center space-x-3 p-2 hover:bg-blue-50 hover:text-blue-600 rounded"
+              >
+                <FaList />
+                <span>Completed List</span>
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/riderequest/cancelled"
+                className="flex items-center space-x-3 p-2 hover:bg-blue-50 hover:text-blue-600 rounded"
+              >
+                <FaList />
+                <span>Cancelled List</span>
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/riderequest/pending"
+                className="flex items-center space-x-3 p-2 hover:bg-blue-50 hover:text-blue-600 rounded"
+              >
+                <FaList />
+                <span>Pending List</span>
+              </Link>
+            </li>
+            
+          </ul>
+        </li>
+        <li>
+          <div
+            onClick={toggleComplaintDropdown}
+            className="flex items-center justify-between space-x-3 p-2 hover:bg-blue-100 hover:text-blue-600 rounded cursor-pointer"
+          >
+            <div className="flex items-center space-x-3">
+              <FaExclamationTriangle />
+              {!isCollapsed && <span>Complaints</span>}
+            </div>
+            {!isCollapsed && (isComplaintOpen ? <FaAngleUp /> : <FaAngleRight />)}
+          </div>
+
+          <ul
+            className={`space-y-4 overflow-hidden border-blue-100 border rounded transition-all duration-700 ease-in-out ${isComplaintOpen ? 'max-h-40 opacity-100' : 'max-h-0 opacity-0'
+              }`}
+          >
+            <li>
+              <Link
+                to="/complaints/resolved"
+                className="flex items-center space-x-3 p-2 hover:bg-blue-50 hover:text-blue-600 rounded"
+              >
+                <FaList />
+                <span>Resolved List</span>
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/complaints/pending"
+                className="flex items-center space-x-3 p-2 hover:bg-blue-50 hover:text-blue-600 rounded"
+              >
+                <FaList />
+                <span>Pending List</span>
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/complaints/investigation"
+                className="flex items-center space-x-3 p-2 hover:bg-blue-50 hover:text-blue-600 rounded"
+              >
+                <FaList />
+                <span>Investigation List</span>
+              </Link>
+            </li>
+            
+          </ul>
+        </li>
+        <li>
+          <div
+            onClick={toggleAccSettingDropdown}
+            className="flex items-center justify-between space-x-3 p-2 hover:bg-blue-100 hover:text-blue-600 rounded cursor-pointer"
+          >
+            <div className="flex items-center space-x-3">
+              <IoSettingsSharp />
+              {!isCollapsed && <span>Account Settings</span>}
+            </div>
+            {!isCollapsed && (isAccSetting ? <FaAngleUp /> : <FaAngleRight />)}
+          </div>
+
+          <ul
+            className={`space-y-4 overflow-hidden border-blue-100 border rounded transition-all duration-700 ease-in-out ${isAccSetting ? 'max-h-40 opacity-100' : 'max-h-0 opacity-0'
+              }`}
+          >
+            <li>
+              <Link
+                to="/role"
+                className="flex items-center space-x-3 p-2 hover:bg-blue-50 hover:text-blue-600 rounded"
+              >
+                <FaList />
+                <span>Role List</span>
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/permission"
+                className="flex items-center space-x-3 p-2 hover:bg-blue-50 hover:text-blue-600 rounded"
+              >
+                <FaList />
+                <span>Permissions List</span>
+              </Link>
+            </li>
+            
+          </ul>
+        </li>
+        <li>
+          <Link to="/terms" className="flex items-center space-x-3 p-2 hover:bg-blue-100 hover:text-blue-600 rounded">
+            <SiGoogledocs />
+            {!isCollapsed && <span>Terms And Conditions</span>}
           </Link>
         </li>
         <li>
-          <Link to="/complaint" className="flex items-center space-x-3 p-2 hover:bg-blue-100 hover:text-blue-600 rounded">
-            <FaExclamationTriangle />
-            {!isCollapsed && <span>Complaint</span>}
+          <Link to="/privacypolicy" className="flex items-center space-x-3 p-2 hover:bg-blue-100 hover:text-blue-600 rounded">
+            <MdOutlineSecurity />
+            {!isCollapsed && <span>Privacy Policy</span>}
           </Link>
         </li>
         <li>
-          <Link to="/withdraw-request" className="flex items-center space-x-3 p-2 hover:bg-blue-100 hover:text-blue-600 rounded">
-            <FaDollarSign />
-            {!isCollapsed && <span>Withdraw Request</span>}
-          </Link>
+          <div
+            onClick={togglePushNotificationDropdown}
+            className="flex items-center justify-between space-x-3 p-2 hover:bg-blue-100 hover:text-blue-600 rounded cursor-pointer"
+          >
+            <div className="flex items-center space-x-3">
+              <AiFillNotification />
+              {!isCollapsed && <span>Push Notification</span>}
+            </div>
+            {!isCollapsed && (isPushNotification ? <FaAngleUp /> : <FaAngleRight />)}
+          </div>
+
+          <ul
+            className={`space-y-4 overflow-hidden border-blue-100 border rounded transition-all duration-700 ease-in-out ${isPushNotification ? 'max-h-40 opacity-100' : 'max-h-0 opacity-0'
+              }`}
+          >
+            <li>
+              <Link
+                to="/pushnotification"
+                className="flex items-center space-x-3 p-2 hover:bg-blue-50 hover:text-blue-600 rounded"
+              >
+                <FaList />
+                <span>Push Notification List</span>
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/pushnotification/create"
+                className="flex items-center space-x-3 p-2 hover:bg-blue-50 hover:text-blue-600 rounded"
+              >
+                <FaPlus />
+                <span>Add Push Notification</span>
+              </Link>
+            </li>
+          </ul>
         </li>
         <li>
-          <Link to="/account-setting" className="flex items-center space-x-3 p-2 hover:bg-blue-100 hover:text-blue-600 rounded">
-            <RiUserSettingsFill />
-            {!isCollapsed && <span>Account Setting</span>}
-          </Link>
-        </li>
-        <li>
-          <Link to="/additional-fees" className="flex items-center space-x-3 p-2 hover:bg-blue-100 hover:text-blue-600 rounded">
-            <MdOutlineAddBox />
-            {!isCollapsed && <span>Additional Fees</span>}
-          </Link>
-        </li>
-        <li>
-          <Link to="/sos" className="flex items-center space-x-3 p-2 hover:bg-blue-100 hover:text-blue-600 rounded">
-            <FaUsers />
-            {!isCollapsed && <span>SOS</span>}
-          </Link>
-        </li>
-        <li>
-          <Link to="/sos" className="flex items-center space-x-3 p-2 hover:bg-blue-100 hover:text-blue-600 rounded">
-            <AiFillNotification />
-            {!isCollapsed && <span>Push Notifications</span>}
-          </Link>
-        </li>
-        <li>
-          <Link to="/sos" className="flex items-center space-x-3 p-2 hover:bg-blue-100 hover:text-blue-600 rounded">
-            <HiDocumentReport />
-            {!isCollapsed && <span>Report</span>}
-          </Link>
-        </li>
-        <li>
-          <Link to="/sos" className="flex items-center space-x-3 p-2 hover:bg-blue-100 hover:text-blue-600 rounded">
-            <IoSettingsSharp />
-            {!isCollapsed && <span>Settings</span>}
-          </Link>
+          <div
+            onClick={toggleReportDropdown}
+            className="flex items-center justify-between space-x-3 p-2 hover:bg-blue-100 hover:text-blue-600 rounded cursor-pointer"
+          >
+            <div className="flex items-center space-x-3">
+              <HiDocumentReport />
+              {!isCollapsed && <span>Reports</span>}
+            </div>
+            {!isCollapsed && (isReport ? <FaAngleUp /> : <FaAngleRight />)}
+          </div>
+
+          <ul
+            className={`space-y-4 overflow-hidden border-blue-100 border rounded transition-all duration-700 ease-in-out ${isReport ? 'max-h-40 opacity-100' : 'max-h-0 opacity-0'
+              }`}
+          >
+            <li>
+              <Link
+                to="/report"
+                className="flex items-center space-x-3 p-2 hover:bg-blue-50 hover:text-blue-600 rounded"
+              >
+                <FaList />
+                <span>Admin Report</span>
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/report/driver"
+                className="flex items-center space-x-3 p-2 hover:bg-blue-50 hover:text-blue-600 rounded"
+              >
+                <FaDollarSign />
+                <span>Driver Earnings</span>
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/report/servicewise"
+                className="flex items-center space-x-3 p-2 hover:bg-blue-50 hover:text-blue-600 rounded"
+              >
+                <FaDollarSign />
+                <span>Service Wise</span>
+              </Link>
+            </li>
+          </ul>
         </li>
       </ul>
     </div>
