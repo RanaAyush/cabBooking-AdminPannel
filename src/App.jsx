@@ -26,10 +26,18 @@ import DriverReport from './pages/DriverReport.jsx';
 import ServiceWiseReport from './pages/ServiceWiseReport.jsx';
 import Roles from './pages/Roles.jsx';
 import Permissions from './pages/Permissions.jsx';
+import Test from './components/test.jsx';
+import { LoadScript } from '@react-google-maps/api'
+
+const libraries = ["places", "drawing"];
 
 function App() {
 
   return (
+    <LoadScript
+              googleMapsApiKey=""
+              libraries={libraries}
+            >
     <Router>
       <Routes>
         <Route path="/" element={<LoginPage />} />
@@ -57,8 +65,10 @@ function App() {
         <Route path="/report/servicewise" element={<ServiceWiseReport/>}/>
         <Route path="/role" element={<Roles/>}/>
         <Route path="/permission" element={<Permissions/>}/>
+        <Route path="/test" element={<Test/>}/>
       </Routes>
     </Router>
+    </LoadScript>
   )
 }
 

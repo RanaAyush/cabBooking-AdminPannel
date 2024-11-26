@@ -9,7 +9,7 @@ const CreateRegion = () => {
       <Sidebar />
       <div className="flex-1 flex flex-col">
         <Navbar />
-        <AddRegionForm/>
+        <AddRegionForm />
       </div>
     </div>
   )

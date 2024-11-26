@@ -7,18 +7,18 @@ const CouponList = () => {
     // Sample data
     const data = [
         { id: 1, code: 'HELLONEW', title: '10% discound for New users', startDate: '2024-11-15', endDate: '2024-11-15', status: 'Active' },
-        { id: 1, code: 'HELLONEW', title: '10% discound for New users', startDate: '2024-11-15', endDate: '2024-11-15', status: 'Active' },
-        { id: 1, code: 'HELLONEW', title: '10% discound for New users', startDate: '2024-11-15', endDate: '2024-11-15', status: 'Active' },
-        { id: 1, code: 'HELLONEW', title: '10% discound for New users', startDate: '2024-11-15', endDate: '2024-11-15', status: 'Active' },
-        { id: 1, code: 'HELLONEW', title: '10% discound for New users', startDate: '2024-11-15', endDate: '2024-11-15', status: 'Active' },
-        { id: 1, code: 'HELLONEW', title: '10% discound for New users', startDate: '2024-11-15', endDate: '2024-11-15', status: 'Active' },
-        { id: 1, code: 'HELLONEW', title: '10% discound for New users', startDate: '2024-11-15', endDate: '2024-11-15', status: 'Active' },
-        { id: 1, code: 'HELLONEW', title: '10% discound for New users', startDate: '2024-11-15', endDate: '2024-11-15', status: 'Active' },
-        { id: 1, code: 'HELLONEW', title: '10% discound for New users', startDate: '2024-11-15', endDate: '2024-11-15', status: 'Active' },
-        { id: 1, code: 'HELLONEW', title: '10% discound for New users', startDate: '2024-11-15', endDate: '2024-11-15', status: 'Active' },
-        { id: 1, code: 'HELLONEW', title: '10% discound for New users', startDate: '2024-11-15', endDate: '2024-11-15', status: 'Active' },
-        { id: 1, code: 'HELLONEW', title: '10% discound for New users', startDate: '2024-11-15', endDate: '2024-11-15', status: 'Active' },
-        { id: 1, code: 'HELLONEW', title: '10% discound for New users', startDate: '2024-11-15', endDate: '2024-11-15', status: 'Active' },
+        { id: 2, code: 'HELLONEW', title: '10% discound for New users', startDate: '2024-11-15', endDate: '2024-11-15', status: 'Active' },
+        { id: 3, code: 'HELLONEW', title: '10% discound for New users', startDate: '2024-11-15', endDate: '2024-11-15', status: 'Active' },
+        { id: 4, code: 'HELLONEW', title: '10% discound for New users', startDate: '2024-11-15', endDate: '2024-11-15', status: 'Active' },
+        { id: 5, code: 'HELLONEW', title: '10% discound for New users', startDate: '2024-11-15', endDate: '2024-11-15', status: 'Active' },
+        { id: 6, code: 'HELLONEW', title: '10% discound for New users', startDate: '2024-11-15', endDate: '2024-11-15', status: 'Active' },
+        { id: 7, code: 'HELLONEW', title: '10% discound for New users', startDate: '2024-11-15', endDate: '2024-11-15', status: 'Active' },
+        { id: 8, code: 'HELLONEW', title: '10% discound for New users', startDate: '2024-11-15', endDate: '2024-11-15', status: 'Active' },
+        { id: 9, code: 'HELLONEW', title: '10% discound for New users', startDate: '2024-11-15', endDate: '2024-11-15', status: 'Active' },
+        { id: 10, code: 'HELLONEW', title: '10% discound for New users', startDate: '2024-11-15', endDate: '2024-11-15', status: 'Active' },
+        { id: 11, code: 'HELLONEW', title: '10% discound for New users', startDate: '2024-11-15', endDate: '2024-11-15', status: 'Active' },
+        { id: 12, code: 'HELLONEW', title: '10% discound for New users', startDate: '2024-11-15', endDate: '2024-11-15', status: 'Active' },
+        { id: 13, code: 'HELLONEW', title: '10% discound for New users', startDate: '2024-11-15', endDate: '2024-11-15', status: 'Active' },
 
     ];
 

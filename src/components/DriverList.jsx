@@ -2,22 +2,39 @@ import React, { useState, useEffect } from 'react';
 import { FaRegEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import { Link } from 'react-router-dom';
+import userIcon from '../assets/man.png';
 
-const DriverList = () => {
+const DriverList = ({ pending }) => {
     // Sample data
     const drivers = [
-        { id: 11, name: 'Vinod Babu', contact: '9874563210', address: 'Rishikesh Dehradun', service: 'premium', lastActive: 'November 17, 2024 4:00 PM',createdAt:'October 10, 2024 6:16 AM', verification:'Verified', Status:'Active' },
-        { id: 12, name: 'Vinod Babu', contact: '9874563210', address: 'Rishikesh Dehradun', service: 'premium', lastActive: 'November 17, 2024 4:00 PM',createdAt:'October 10, 2024 6:16 AM', verification:'Unverified', Status:'Active' },
-        { id: 13, name: 'Vinod Babu', contact: '9874563210', address: 'Rishikesh Dehradun', service: 'premium', lastActive: 'November 17, 2024 4:00 PM',createdAt:'October 10, 2024 6:16 AM', verification:'Verified', Status:'Pending' },
-        { id: 14, name: 'Vinod Babu', contact: '9874563210', address: 'Rishikesh Dehradun', service: 'premium', lastActive: 'November 17, 2024 4:00 PM',createdAt:'October 10, 2024 6:16 AM', verification:'Verified', Status:'Active' },
-        { id: 15, name: 'Vinod Babu', contact: '9874563210', address: 'Rishikesh Dehradun', service: 'premium', lastActive: 'November 17, 2024 4:00 PM',createdAt:'October 10, 2024 6:16 AM', verification:'Verified', Status:'Active' },
-        { id: 16, name: 'Vinod Babu', contact: '9874563210', address: 'Rishikesh Dehradun', service: 'premium', lastActive: 'November 17, 2024 4:00 PM',createdAt:'October 10, 2024 6:16 AM', verification:'Unverified', Status:'Pending' },
+        { id: 11, name: 'Vinod Babu', contact: '9874563210', address: 'Rishikesh Dehradun', service: 'premium', lastActive: 'November 17, 2024 4:00 PM', createdAt: 'October 10, 2024 6:16 AM', verification: 'Verified', Status: 'Active' },
+        { id: 12, name: 'Vinod Babu', contact: '9874563210', address: 'Rishikesh Dehradun', service: 'premium', lastActive: 'November 17, 2024 4:00 PM', createdAt: 'October 10, 2024 6:16 AM', verification: 'Unverified', Status: 'Active' },
+        { id: 13, name: 'Vinod Babu', contact: '9874563210', address: 'Rishikesh Dehradun', service: 'premium', lastActive: 'November 17, 2024 4:00 PM', createdAt: 'October 10, 2024 6:16 AM', verification: 'Verified', Status: 'Pending' },
+        { id: 14, name: 'Vinod Babu', contact: '9874563210', address: 'Rishikesh Dehradun', service: 'premium', lastActive: 'November 17, 2024 4:00 PM', createdAt: 'October 10, 2024 6:16 AM', verification: 'Verified', Status: 'Active' },
+        { id: 15, name: 'Vinod Babu', contact: '9874563210', address: 'Rishikesh Dehradun', service: 'premium', lastActive: 'November 17, 2024 4:00 PM', createdAt: 'October 10, 2024 6:16 AM', verification: 'Verified', Status: 'Active' },
+        { id: 16, name: 'Vinod Babu', contact: '9874563210', address: 'Rishikesh Dehradun', service: 'premium', lastActive: 'November 17, 2024 4:00 PM', createdAt: 'October 10, 2024 6:16 AM', verification: 'Unverified', Status: 'Pending' },
     ];
+    var filteredDrivers = drivers;
+    if (pending) {
+        filteredDrivers = drivers.filter(driver =>
+            driver.verification === 'Unverified' || driver.Status === 'Pending'
+        );
+    }
 
-    const [users, setUsers] = useState(drivers);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selectedDriverDetails, setSelectedDriverDetails] = useState({});
+    const [users, setUsers] = useState(filteredDrivers);
     const [currentPage, setCurrentPage] = useState(1);
     const [entriesPerPage, setEntriesPerPage] = useState(10);
     const [displayedUsers, setDisplayedUsers] = useState([]);
+
+    const openModal = () => setIsModalOpen(true);
+    const closeModal = () => setIsModalOpen(false);
+
+    const updateDriver = () => {
+        //driver update code will be here.
+        closeModal();
+    }
 
     useEffect(() => {
         const startIdx = (currentPage - 1) * entriesPerPage;
@@ -46,6 +63,105 @@ const DriverList = () => {
 
     return (
         <div className="p-6 bg-[#f7f9ff]">
+            {/* Modal */}
+            {isModalOpen && (
+                <div
+                    className="fixed inset-0 bg-gray-500 bg-opacity-75 flex justify-center items-center"
+                    onClick={closeModal} // Close on clicking the background
+                >
+                    {/* Modal content */}
+                    <div
+                        className="bg-white rounded shadow-lg absolute top-5 w-1/2"
+                        onClick={(e) => e.stopPropagation()} // Stop propagation to prevent modal from closing
+                    >
+                        {/* Modal header */}
+                        <div className="flex justify-between items-center border-b px-4 py-2">
+                            <h2 className="text-xl font-bold">Driver Details</h2>
+                            <button
+                                className="text-gray-600 hover:text-red-500 text-2xl"
+                                onClick={closeModal}
+                            >
+                                &times;
+                            </button>
+                        </div>
+
+                        {/* Modal body */}
+                        <div className="p-4 space-y-4 flex gap-4">
+                            {/* Driver Photo Section */}
+                            <div className="flex flex-col items-center w-1/3">
+                                <img
+                                    src={userIcon} // Replace with the actual photo URL
+                                    alt="Driver"
+                                    className="w-32 h-32 rounded-full border"
+                                />
+                                <p className="text-gray-500 text-sm mt-2">Photo of Driver</p>
+                            </div>
+
+                            {/* Driver Details */}
+                            <div>
+                                <div className=' mb-6'>
+                                    <h3 className="text-lg font-semibold border-b pb-2">Details</h3>
+                                    <ul className="space-y-1 mt-2 grid grid-cols-2">
+                                        <li><strong>ID:</strong> {selectedDriverDetails.id}</li>
+                                        <li><strong>Name:</strong> {selectedDriverDetails.name}</li>
+                                        <li><strong>Contact:</strong> {selectedDriverDetails.contact}</li>
+                                        <li><strong>Address:</strong> {selectedDriverDetails.address}</li>
+                                        <li><strong>Last Active:</strong> {selectedDriverDetails.lastActive}</li>
+                                        <li><strong>Created At:</strong>{selectedDriverDetails.createdAt}</li>
+                                        <li><strong>Verification:</strong> {selectedDriverDetails.verification}</li>
+                                        <li><strong>Service:</strong> {selectedDriverDetails.service}</li>
+                                        <li><strong>Status:</strong> {selectedDriverDetails.Status}</li>
+                                    </ul>
+                                </div>
+
+                                {/* Uploaded Documents */}
+                                <div>
+                                    <h3 className="text-lg font-semibold border-b pb-2">Uploaded Documents</h3>
+                                    <ul className="space-y-1 mt-2">
+                                        <li><strong>Aadhar:</strong> <a href="#" className="text-blue-500 hover:underline">View</a></li>
+                                        <li><strong>Driving License:</strong> <a href="#" className="text-blue-500 hover:underline">View</a></li>
+                                        <li><strong>RC:</strong> <a href="#" className="text-blue-500 hover:underline">View</a></li>
+                                    </ul>
+                                </div>
+                                <div className="flex p-4 border-t gap-2 justify-center">
+                                    <button
+                                        
+                                        className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 focus:bg-green-200"
+                                    >
+                                        Verify Driver
+                                    </button>
+                                    <select
+                                        className="border rounded px-2 py-1"
+                                        defaultValue="Pending"
+                                    >
+                                        <option value="Pending">Pending</option>
+                                        <option value="Active">Active</option>
+                                        <option value="Inactive">Inactive</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="flex justify-end p-4 border-t gap-2">
+                            <button
+                                className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+                                onClick={closeModal}
+                            >
+                                Cancel
+                            </button>
+                            <button
+                                className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+                                onClick={updateDriver}
+                            >
+                                Update Driver
+                            </button>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            )}
+
             <div className="flex justify-between px-4 border-b-2 border-blue-100 bg-white">
                 <h2 className="text-3xl py-4 font-semibold px-2">Drivers List</h2>
                 <Link to='/driver/create' className="border border-black bg-white text-xl text-black hover:bg-black hover:text-white rounded-md my-3 flex items-center p-2"> + Add Driver</Link>
@@ -91,12 +207,14 @@ const DriverList = () => {
                                 <td className="px-2 py-4 border-b-2 border-blue-200 ">{driver.service}</td>
                                 <td className="px-2 py-4 border-b-2 border-blue-200 ">{driver.lastActive}</td>
                                 <td className="px-2 py-4 border-b-2 border-blue-200 ">{driver.createdAt}</td>
-                                <td className={`px-2 py-4 border-b-2 border-blue-200 ${driver.verification==='Unverified'?'text-red-500':'text-green-500'}`}>{driver.verification}</td>
-                                <td className={`px-2 py-4 border-b-2 border-blue-200 ${driver.Status==='Pending'?'text-red-500':'text-green-500'}`}>{driver.Status}</td>
-                                
+                                <td className={`px-2 py-4 border-b-2 border-blue-200 ${driver.verification === 'Unverified' ? 'text-red-500' : 'text-green-500'}`}>{driver.verification}</td>
+                                <td className={`px-2 py-4 border-b-2 border-blue-200 ${driver.Status === 'Pending' ? 'text-red-500' : 'text-green-500'}`}>{driver.Status}</td>
+
                                 <td className="px-2 py-4 border-b-2 border-blue-200 ">
-                                    <button className="text-blue-600 mx-1 text-xl"><FaRegEdit /></button>
-                                    <button className="text-blue-600 mx-1">👁️</button>
+                                    <button onClick={() => {
+                                        setSelectedDriverDetails(driver);
+                                        openModal();
+                                    }} className="text-blue-600 mx-1 text-xl"><FaRegEdit /></button>
                                     <button className="text-red-600 mx-1 text-xl"><MdDelete /></button>
                                 </td>
                             </tr>
